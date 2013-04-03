@@ -6,7 +6,10 @@ Assume you are working on the dataset "mushroom.dat" from FIMI repository. First
 
 apriori mushroom.dat mushroom.itemsets -ts -a -m2 -s30
 
-Then you can extract some itemsets from "mushroom.itemsets" file as sensitive itemsets and store them in a new file called "mushroom.itemsets.sensitive". If you want to automatically create this sensitive sets file from the itemsets file, you need to run "item" utility. For example following command selects 5 itemsets from mushroom.itemsets, store them in "mushroom.itemsets.sensitive" while storing the remaining itemsets in "mushroom.itemsets.nonsensitive":
+Then you can extract some itemsets from "mushroom.itemsets" file as sensitive itemsets and store them in a new file called "mushroom.itemsets.sensitive". 
+If you want to automatically create this sensitive sets file from the itemsets file, you need to run "item" utility. 
+For example following command selects 5 itemsets from mushroom.itemsets, store them in "mushroom.itemsets.sensitive" 
+while storing the remaining itemsets in "mushroom.itemsets.nonsensitive":
 
 item mushroom 2430 5
 
@@ -14,7 +17,11 @@ Utility item selects the itemsets using some criteria, which are hardcoded. 2430
 
 Then, run "matrix", "cost" and "prep" utilities to create the necessary matrices:
 
-matrix mushroom cost mushroom 2430 prep mushroom 2430 200
+matrix mushroom 
+
+cost mushroom 2430 
+
+prep mushroom 2430 200
 
 where 200 is the max. item id in sensitive itemsets. This limits the size of the matrices files and also the size of the problem.
 
@@ -22,7 +29,8 @@ To run the linear programming toolkit, type:
 
 glpsol -m mushroom.mod
 
-where "mushroom.mod" is the GLPK model file. The solution is written into "mushroom.final.sol". This is in CSV format. Finally run the utility "rmvexact" to remove the items from the original database and store sanitized database in a different file.
+where "mushroom.mod" is the GLPK model file. The solution is written into "mushroom.final.sol". This is in CSV format. 
+Finally run the utility "rmvexact" to remove the items from the original database and store sanitized database in a different file.
 
 rmvexact mushroom
 
